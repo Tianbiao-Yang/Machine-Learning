@@ -30,19 +30,10 @@
 
 ## Machine Learning algorithms
 * Supervised learning（监督学习）
-	* Regression（回归问题）：如房价预测等
-
-![](../Image-Gallery/1-1房价预测示意图.PNG "房价预测")
-	
-	* Classfication（分类问题）：如区分恶性或良性肿瘤
-
-![](../Image-Gallery/1-2肿瘤预测示意图.PNG "肿瘤预测") 
-
+	* Regression（回归问题）：如[房价预测](../Image-Gallery/1-1房价预测示意图.PNG "房价预测")等
+	* Classfication（分类问题）：如[区分恶性或良性肿瘤](../Image-Gallery/1-2肿瘤预测示意图.PNG "肿瘤预测") 
 * Unsupervised learning（无监督学习）
-	* 无监督学习是指没有任何标签或者有相同的标签，也就是到我们手里的只是一个数据集，别的均不知，主要为“聚类”。下图可以看出两者之间的差异：
-
-![](../Image-Gallery/1-3监督和非监督学习的区别.PNG) 
-
+	* 无监督学习是指没有任何标签或者有相同的标签，也就是到我们手里的只是一个数据集，别的均不知，主要为“聚类”。如图可以看出[监督和非监督学习的区别](../Image-Gallery/1-3监督和非监督学习的区别.PNG "差异")  
 	* 同时，若有有顾客数据集，自动地发现“市场分类”，并自动地把顾客划分到不同的细分市场中，自动并更有效地销售或不同的细分市场一起进行销售
 
 ## Development history
