@@ -12,7 +12,7 @@
 ## Machine Learning algorithms
 * Supervised learning（监督学习）
 	* Regression（回归问题）：如房价预测等
-	* ![](https://github.com/Tianbiao-Yang/Machine-Learning/Image-Gallery/1-1房价预测示意图.JPG)  
+	* ![](../Image-Gallery/1-1房价预测示意图.JPG)  
 	* Classfication（分类问题）：如区分恶性或良性肿瘤
 * Unsupervised learning（无监督学习）
 	* 无监督学习是指没有任何标签或者有相同的标签，也就是到我们手里的只是一个数据集，别的均不知。下图可以看出两者之间的差异：
