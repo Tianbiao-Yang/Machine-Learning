@@ -54,7 +54,9 @@
 	* 过拟合为什么无法避免，只能缓解？
 	* 答：机器学习面临的问题一般是[NP难](../Chapter-1-Introduction/NP-Hard.md)甚至更难，而有效的学习算法是在多项式时间内完成的，若可避免过拟合，则通过最小化经验误差就可以获得最优解，这就意味着我们构造性的证明了P=NP，但只要相信P!=NP,过拟合就无法避免.
 ### 评估方法
-* 留出法：直接将数据集划分成两个互斥的数据集S和T，S用于训练得出模型，T用于测试，对泛化误差进行估计，代码如下[matlab](../Chapter-1-Introduction/matlab_codes/hold_out.m)和[python](../Chapter-1-Introduction/python_codes/hold_out.py).（一般2/3-4/5用于训练，其余用于测试） 
+* 留出法：直接将数据集划分成两个互斥的数据集S和T，S用于训练得出模型，T用于测试，对泛化误差进行估计，代码如下[matlab](../Chapter-1-Introduction/matlab_codes/hold_out.m)和[python](../Chapter-1-Introduction/python_codes/hold_out.py).（一般2/3-4/5用于训练，其余用于测试）
+* 交叉验证法：先把数据集分成k个大小相似的互斥子集，在通过分层抽样以保证数据分布一致，然后用k-1个子集的并集作为训练集，余下的子集作为测试集，这样可以获得k组训练/测试集合，进行k次训练和测试，返回k个结果的均值。
+matlab函数是：indices = crossvalind('Kfold',data(1:M,N),k);
 
 
 
