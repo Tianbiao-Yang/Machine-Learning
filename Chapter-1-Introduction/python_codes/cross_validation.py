@@ -1,5 +1,5 @@
 # =============================================================================
-#                                   cross validation                              
+#                                  cross validation                              
 # =============================================================================
 
 '''
@@ -119,25 +119,129 @@ metrics.accuracy_score(iris.target, predicted)
        例如从多个患者收集医学数据，从每个患者身上采集多个样本，这样的数据很可能取决于个人群体
        组k-flod、留一组交叉验证、留p组交叉验证、Group Shuffle Split
 '''
- 
+
+
+# --* 针对IID分布数据 *--
+
+# k折 (由n_splits确定)
+import numpy as np
+from sklearn.model_selection import KFold
+X = np.array([[0., 0.], [1., 1.], [-1., -1.], [2., 2.]])
+y = np.array([0, 1, 0, 1])
+kf = KFold(n_splits=2)
+for train, test in kf.split(X):
+    print("%s %s" % (train,test))
+X_train, X_test, y_train, y_test = X[train], X[test], y[train], y[test]
+
+# 重复k折交叉验证
+from sklearn.model_selection import RepeatedKFold
+X = np.array([[1, 2], [3, 4], [1, 2], [3, 4], [1, 2]])
+random_state = 1
+rkf = RepeatedKFold(n_splits=2, n_repeats=2, random_state=random_state)
+for train, test in rkf.split(X):
+    print("%s %s" % (train, test))
+# X_train, X_test = X[train], X[test]
+
+# 留一交叉验证(LOO)
+from sklearn.model_selection import LeaveOneOut
+loo = LeaveOneOut()
+for train, test in loo.split(X):
+    print("%s %s" % (train, test))
+
+# 留p交叉验证（LPO）
+from sklearn.model_selection import LeavePOut
+lpo = LeavePOut(2)
+for train, test in lpo.split(X):
+    print("%s %s" % (train, test))
+
+# 随机排列交叉验证
+from sklearn.model_selection import ShuffleSplit
+# X = np.arange(5)
+ss = ShuffleSplit(n_splits=3, test_size=0.25, random_state=0)
+for train_index, test_index in ss.split(X):
+    print("%s %s" % (train_index, test_index))
+    # X[test_index], X[train_index]
+
+
+# --* 基于类标签、具有分层的交叉验证迭代器 *-- 
+# 分层k折
+from sklearn.model_selection import StratifiedKFold
+X = np.array(np.ones(10))
+y = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1, 1])
+skf = StratifiedKFold(n_splits=3)
+for train_index, test_index in skf.split(X, y):
+    print("%s %s" % (train_index, test_index))
+    # X_train, X_test = X[train_index], X[test_index]
+    # y_train, y_test = y[train_index], y[test_index]
+    # print(X_train, X_test, y_train, y_test)
+
+# 分层随机 Split
+from sklearn.model_selection import StratifiedShuffleSplit
+sss = StratifiedShuffleSplit(n_splits=5, test_size=0.25, random_state=0)
+for train_index, test_index in sss.split(X, y):
+    print("%s %s" % (train, test))
+    # X_train, X_test = X[train_index], X[test_index]
+    # y_train, y_test = y[train_index], y[test_index]
+    # print(X_train, X_test, y_train, y_test)
+
+
+# --* 分组数据类型的数据的交叉验证迭代器 *--
+# 组 k-flod
+from sklearn.model_selection import GroupKFold
+# 科目成绩数据
+X = [0.1, 0.2, 2.2, 2.4, 2.3, 4.55, 5.8, 8.8, 9, 10]
+y = ["a", "b", "b", "b", "c", "c", "c", "d", "d", "d"]
+groups = [1, 1, 1, 2, 2, 2, 3, 3, 3, 3]
+gkf = GroupKFold(n_splits=3)
+for train, test, in gkf.split(X, y, groups= groups):
+    print("%s %s" % (train, test))
+
+# 留一组交叉验证
+from sklearn.model_selection import LeaveOneGroupOut
+# 在多个实验的情况下
+X = [1, 5, 10, 50, 60, 70, 80]
+y = [0, 1, 1, 2, 2, 2, 2]
+groups = [1, 1, 2, 2, 3, 3, 3]
+logo = LeaveOneGroupOut()
+for train, test in logo.split(X, y, groups=groups):
+    print("%s %s" % (train, test))
+
+# 留p组交叉验证
+from sklearn.model_selection import LeavePGroupsOut
+lpgo = LeavePGroupsOut(n_groups=2)
+for train, test in lpgo.split(X, y, groups=groups):
+    print("%s %s" % (train, test))
+
+# Group Shuffle Split 生成随机划分分区的序列
+from sklearn.model_selection import GroupShuffleSplit
+X = [0.1, 0.2, 2.2, 2.4, 2.3, 4.55, 5.8, 0.001]
+y = ["a", "b", "b", "b", "c", "c", "c", "a"]
+groups = [1, 1, 2, 2, 3, 3, 4, 4]
+gss = GroupShuffleSplit(n_splits=4, test_size=0.5, random_state=0)
+for train, test in gss.split(X, y, groups=groups):
+    print("%s %s" % (train, test))   
 
 
 
+# ====================================================
+#               交叉验证在时间序列数据中应用
+# ====================================================
+'''
+   时间序列数据是指在不同时间点上收集到的数据，
+   这类数据反映了某一事物、现象等随时间的变化状态或程度
+'''
+from sklearn.model_selection import TimeSeriesSplit
+X = np.array([[1, 2], [3, 4], [1, 2], [3, 4], [1, 2], [3, 4]])
+y = np.array([1, 2, 3, 4, 5, 6])
+tscv = TimeSeriesSplit(n_splits=3)
+for train, test in tscv.split(X):
+    print("%s %s" % (train, test))
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+# ====================================================
+#                         END
+# ====================================================
 
 
 
