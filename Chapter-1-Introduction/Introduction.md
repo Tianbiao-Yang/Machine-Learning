@@ -57,7 +57,7 @@
 * 留出法：直接将数据集划分成两个互斥的数据集S和T，S用于训练得出模型，T用于测试，对泛化误差进行估计，代码如下[matlab](../Chapter-1-Introduction/matlab_codes/hold_out.m)和[python](../Chapter-1-Introduction/python_codes/hold_out.py).（一般2/3-4/5用于训练，其余用于测试）
 * 交叉验证法：先把数据集分成k个大小相似的互斥子集，在通过分层抽样以保证数据分布一致，然后用k-1个子集的并集作为训练集，余下的子集作为测试集，这样可以获得k组训练/测试集合，进行k次训练和测试，返回k个结果的均值。![](../Image-Gallery/1-5三折交叉验证.png)
 	* matlab函数是：[indices = crossvalind('Kfold',data,k)](../Chapter-1-Introduction/matlab_codes/cross_validation.m);k若为1则是留一法（LOO）
-	* 
+	* 在pyhon中实现交叉验证法，需要用到sklearn.model_selection模块里的一些函数，具体详见[cross_validation.md](../Chapter-1-Introduction/python_codes/cross_validation.md)文档，代码实现详见[cross_validation.py].(../Chapter-1-Introduction/python_codes/cross_validation.py)
 
 
 
