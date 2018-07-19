@@ -58,6 +58,10 @@
 * 交叉验证法：先把数据集分成k个大小相似的互斥子集，在通过分层抽样以保证数据分布一致，然后用k-1个子集的并集作为训练集，余下的子集作为测试集，这样可以获得k组训练/测试集合，进行k次训练和测试，返回k个结果的均值。![](../Image-Gallery/1-5三折交叉验证.png)
 	* matlab函数是：[indices = crossvalind('Kfold',data,k)](../Chapter-1-Introduction/matlab_codes/cross_validation.m);k若为1则是留一法（LOO）
 	* 在pyhon中实现交叉验证法，需要用到sklearn.model_selection模块里的一些函数，具体详见[cross_validation.md](../Chapter-1-Introduction/python_codes/cross_validation.md)文档，代码实现详见[cross_validation.py](../Chapter-1-Introduction/python_codes/cross_validation.py).
+* 自助法：有放回的均匀抽样
+	* 优点：自助法在数据集较小、难以有效划分训练/测试集时很有用；此外，自助法能从初始数据集中产生多个不同的训练集，这对集成学习等方法有很大的好处
+	* 缺点：自助法产生的数据集改变了初始数据集的分布，这会引入估计偏差。
+	* 代码：[matlab](../Chapter-1-Introduction/matlab_codes/bootstrap.m)，[python](../Chapter-1-Introduction/python_codes/booststrap.py)
 
 
 
