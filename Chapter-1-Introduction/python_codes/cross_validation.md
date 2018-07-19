@@ -4,8 +4,7 @@
 ## 方法定义
 交叉验证法：先把数据集分成k个大小相似的互斥子集，在通过分层抽样以保证数据分布一致，然后用k-1个子集的并集作为训练集，余下的子集作为测试集，这样可以获得k组训练/测试集合，进行k次训练和测试，返回k个结果的均值。
 ## 思路
-过拟合情况 --> cv的指标(scores) --> 交叉验证迭代器 --> 应用
-![](../Image-Gallery/1-6交叉验证法.PNG)
+过拟合情况 --> cv的指标(scores) --> 交叉验证迭代器 --> 应用![](../Image-Gallery/1-6交叉验证法.PNG)
 ## 计算交叉验证的指标(scores)
 * k-折交叉相关：cross_val_score(clf, iris.data, iris.target, cv=k)
 * 改变scoring的计算方式：scores = cross_val_score(clf, iris.data, iris.target, cv=5, scoring = 'f1_macro')
