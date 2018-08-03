@@ -62,6 +62,10 @@
 	* 优点：自助法在数据集较小、难以有效划分训练/测试集时很有用；此外，自助法能从初始数据集中产生多个不同的训练集，这对集成学习等方法有很大的好处
 	* 缺点：自助法产生的数据集改变了初始数据集的分布，这会引入估计偏差。
 	* 代码：[matlab](../Chapter-1-Introduction/matlab_codes/bootstrap.m)，[python](../Chapter-1-Introduction/python_codes/booststrap.py)
+* 调参和最终模型
+### 性能度量
+衡量模型泛化能力的评价指标
+
 
 
 
