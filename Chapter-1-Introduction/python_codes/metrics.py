@@ -1,6 +1,6 @@
-# =============================================================================
-#                               性能度量metrics
-# =============================================================================
+# ==================================================================================================
+#                                           性能度量metrics
+# ==================================================================================================
 
 from sklearn.metrics import fbeta_score, make_scorer
 from sklearn.model_selection import GridSearchCV
@@ -94,38 +94,7 @@ metrics.precision_recall_fscore_support(y_true, y_pred, beta=0.5, average=None)
 metrics.recall_score(y_true, y_pred, labels=[2], average='micro')
 metrics.precision_score(y_true, y_pred, labels=[0, 1, 2, 3], average='macro')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # 准确率、召回率和F1
+
+
+
